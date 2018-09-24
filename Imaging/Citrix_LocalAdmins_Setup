@@ -1,0 +1,52 @@
+# Run script as local Admin
+
+# Add Local User and Create Password
+# Syntax NET USER [username] [password] /ADD 
+
+$pass = Read-Host 'Enter Username password?' -AsSecureString
+
+NET USER Username $pass /ADD
+
+# Add Local User to Administartors Group
+# Syntax NET LOCALGROUP [group] [username] /add
+
+NET LOCALGROUP Administrators Username /add
+
+# Add Domain User to Local Administartors Group
+
+NET LOCALGROUP Administrators DomainUser /add
+
+#Change timezone to Pacific. If user is located within a different time zone edit the line below
+
+TZUTIL /s "Pacific Standard Time"
+
+# Download Citrix Application.exe from Connect.virtualworkspace.aig.com and place in C:\tempfile folder
+
+$url = "https://connect.virtualworkspace.aig.com/connect/clients/CitrixReceiverWeb.exe"
+$output = "C:\tempfile\CitrixReceiverWeb.exe"
+$start_time = Get-Date
+
+$wc = New-Object System.Net.WebClient
+$wc.DownloadFile($url, $output)
+
+#Silent install Citrix Receiver, do not allow single sign on, allow prelaunch and allow store 
+
+$InstallFiles = "C:\tempfile\CitrixReceiverWeb.exe"
+$ArgumentList = '/silent /includeSSON enable_SSON=no enableprelaunch=true allowaddstore=a'
+Write-host "Installing Citrix receiver"
+Start-Process -FilePath $InstallFiles -ArgumentList $ArgumentList -wait
+
+# Download Citrix Receiver Config file from Connect.virtualworkspace.aig.com and place in C:\tempfile folder
+
+$url = "https://connect.virtualworkspace.aig.com/connect/AMER/ReceiverConfig.cr"
+$output = "C:\tempfile\ReceiverConfig.cr"
+$start_time = Get-Date
+
+$wc = New-Object System.Net.WebClient
+$wc.DownloadFile($url, $output)
+
+# Execute Citrix
+
+ .\ReceiverConfig.cr
+
+Write-host "Installation Complete" -ForegroundColor Green
