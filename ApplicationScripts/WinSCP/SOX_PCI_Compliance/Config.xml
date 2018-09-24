@@ -1,0 +1,4 @@
+<Configuration>
+  <UserName>USERNAME</UserName>
+  <Password>EncryptedPassword</Password>
+</Configuration>
