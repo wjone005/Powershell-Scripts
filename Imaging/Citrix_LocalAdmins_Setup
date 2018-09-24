@@ -1,10 +1,10 @@
 # Run script as local Admin
 
-# Add Local User and Create Password
-# Syntax NET USER [username] [password] /ADD 
+# Add Create Local User Password
 
 $pass = Read-Host 'Enter Username password?' -AsSecureString
 
+# Create Local User and assign password
 NET USER Username $pass /ADD
 
 # Add Local User to Administartors Group
