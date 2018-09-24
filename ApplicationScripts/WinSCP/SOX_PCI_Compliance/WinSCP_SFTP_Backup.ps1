@@ -1,5 +1,4 @@
-#Run with AutoSys Job Scheduling tool CA Workload Automation AE 
-
+#Run with AutoSys Job Scheduling tool
 
 #Declare variables
 param (
