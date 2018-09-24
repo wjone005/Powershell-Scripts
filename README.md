@@ -1,4 +1,4 @@
-# Scripts
+# Powershell-Scripts
 
 Repository for various scripts that keeps the lights on.
 
