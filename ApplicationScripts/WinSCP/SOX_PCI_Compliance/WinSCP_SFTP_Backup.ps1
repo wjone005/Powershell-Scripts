@@ -50,7 +50,7 @@ try
                 Move-Item $transfer.FileName $backupPath
 
     # Send text message to my phone and email to Jira to create a ticket.
-    # Sender will be audit officer and will Jira will assign them as a reporter.
+    # Sender will be audit officer and Jira will assign them as a reporter.
     $properties = @{
     to         = '##########@txt.att.net','test@JiraDomainName.com'
     from       = 'AuditOfficer@company.com'
